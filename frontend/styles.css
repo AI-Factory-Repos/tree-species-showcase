@@ -1,12 +1,35 @@
-/* ===== Reset & Base ===== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* =============================================
+   Global Reset & Base
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-html { scroll-behavior: smooth; }
+:root {
+  --green-dark:   #1b4332;
+  --green-mid:    #2d6a4f;
+  --green-light:  #52b788;
+  --green-pale:   #d8f3dc;
+  --accent:       #f4a261;
+  --text-dark:    #1a1a1a;
+  --text-mid:     #444;
+  --text-light:   #fff;
+  --card-bg:      #ffffff;
+  --shadow:       0 4px 20px rgba(0,0,0,.10);
+  --radius:       12px;
+  --transition:   .3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f4f7f2;
-  color: #2c3e2d;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--text-dark);
+  background: #f9f9f6;
   line-height: 1.6;
 }
 
@@ -16,310 +39,303 @@ body {
   padding: 0 1.5rem;
 }
 
-/* ===== Header ===== */
+/* =============================================
+   Header
+   ============================================= */
 .site-header {
-  background: linear-gradient(135deg, #1a3a1a 0%, #2d6a2d 60%, #4a9e4a 100%);
-  color: #fff;
-  padding: 3rem 0 2rem;
+  background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+  color: var(--text-light);
+  padding: 2.5rem 0 2rem;
   text-align: center;
 }
 
-.site-title {
-  font-size: 2.6rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.4rem;
+.site-header h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: .5px;
 }
 
-.site-subtitle {
-  font-size: 1.1rem;
-  opacity: 0.85;
-  margin-bottom: 1.5rem;
+.site-header .tagline {
+  margin: .4rem 0 1.2rem;
+  opacity: .85;
+  font-size: 1.05rem;
 }
 
-.site-nav {
+.site-header nav {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
 }
 
-.site-nav a {
-  color: #c8f0c8;
+.site-header nav a {
+  color: var(--green-pale);
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
-  transition: background 0.2s;
+  padding: .3rem .8rem;
+  border-radius: 20px;
+  transition: background var(--transition);
 }
 
-.site-nav a:hover {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
+.site-header nav a:hover {
+  background: rgba(255,255,255,.15);
 }
 
-/* ===== Sections ===== */
-.section {
+/* =============================================
+   Gallery Section (placeholder styling)
+   ============================================= */
+.gallery-section {
   padding: 4rem 0;
 }
 
-.section-title {
+.gallery-section h2 {
   font-size: 2rem;
-  color: #1a3a1a;
+  color: var(--green-dark);
+  margin-bottom: 1.5rem;
   text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.section-desc {
-  text-align: center;
-  color: #5a7a5a;
-  margin-bottom: 2.5rem;
-  font-size: 1.05rem;
-}
-
-/* ===== Species Grid ===== */
-.species-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.species-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.species-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
-}
-
-.species-card-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-
-.species-card-body {
-  padding: 1rem 1.2rem 1.2rem;
-}
-
-.species-card-name {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #1a3a1a;
-  margin-bottom: 0.2rem;
-}
-
-.species-card-latin {
-  font-style: italic;
-  color: #6a9a6a;
-  font-size: 0.9rem;
-  margin-bottom: 0.6rem;
-}
-
-.species-card-desc {
-  font-size: 0.92rem;
-  color: #4a5a4a;
-}
-
-/* ===== Gallery Section ===== */
-.gallery-section {
-  background: #eaf2ea;
 }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
 }
 
-.gallery-thumb {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  background: #ccc;
-  aspect-ratio: 4/3;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  transition: transform 0.22s, box-shadow 0.22s;
+.loading-msg {
+  grid-column: 1/-1;
+  text-align: center;
+  color: var(--text-mid);
+  padding: 2rem;
 }
 
-.gallery-thumb:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+/* =============================================
+   Facts Section — Layout
+   ============================================= */
+.facts-section {
+  background: linear-gradient(160deg, var(--green-dark) 0%, #081c15 100%);
+  color: var(--text-light);
+  padding: 5rem 0 4rem;
 }
 
-.gallery-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  text-align: center;
+  color: var(--green-pale);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: rgba(255,255,255,.65);
+  margin: .5rem 0 3rem;
+  font-size: 1.05rem;
+}
+
+/* =============================================
+   Animated Counters
+   ============================================= */
+.counters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.counter-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.2rem;
+  text-align: center;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.counter-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,.10);
+}
+
+.counter-value {
   display: block;
-  transition: opacity 0.3s;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--green-light);
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: .5rem;
 }
 
-.gallery-thumb-overlay {
+.counter-label {
+  font-size: .82rem;
+  color: rgba(255,255,255,.7);
+  line-height: 1.4;
+}
+
+/* =============================================
+   Rotating Fact Cards — Carousel
+   ============================================= */
+.fact-carousel-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.carousel-heading {
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  letter-spacing: .5px;
+}
+
+.fact-carousel {
+  position: relative;
+  min-height: 260px;
+}
+
+.fact-card {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius);
+  padding: 2rem 2.2rem;
   opacity: 0;
-  transition: opacity 0.25s;
-  display: flex;
-  align-items: flex-end;
-  padding: 0.7rem 0.8rem;
-}
-
-.gallery-thumb:hover .gallery-thumb-overlay {
-  opacity: 1;
-}
-
-.gallery-thumb-caption {
-  color: #fff;
-  font-size: 0.88rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-/* ===== Lightbox ===== */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lightbox[hidden] {
-  display: none;
-}
-
-.lightbox-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.88);
-  cursor: pointer;
-}
-
-.lightbox-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  max-width: 95vw;
-  max-height: 95vh;
-  animation: lbFadeIn 0.3s ease;
-}
-
-@keyframes lbFadeIn {
-  from { opacity: 0; transform: scale(0.94); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-.lightbox-img-wrap {
-  position: relative;
+  transform: translateX(40px);
+  transition: opacity .45s ease, transform .45s ease;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: .75rem;
 }
 
-.lightbox-img {
-  max-width: min(80vw, 900px);
-  max-height: 78vh;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-  display: block;
-  transition: opacity 0.25s;
+.fact-card.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
 }
 
-.lightbox-img.fading {
+.fact-card.exit-left {
   opacity: 0;
+  transform: translateX(-40px);
 }
 
-.lightbox-caption {
-  color: #e8f5e8;
-  font-size: 1rem;
+.fact-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.fact-card h4 {
+  font-size: 1.15rem;
+  color: var(--green-light);
+}
+
+.fact-card p {
+  color: rgba(255,255,255,.8);
+  font-size: .97rem;
+  line-height: 1.65;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.carousel-btn {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: .45rem;
+  align-items: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.dot.active {
+  background: var(--green-light);
+  transform: scale(1.3);
+}
+
+/* Category Filters */
+.category-filters {
+  display: flex;
+  justify-content: center;
+  gap: .65rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.75);
+  padding: .4rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: .88rem;
+  transition: all var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--green-light);
+  border-color: var(--green-light);
+  color: var(--green-dark);
   font-weight: 600;
-  margin-top: 0.8rem;
-  text-align: center;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-  max-width: min(80vw, 900px);
 }
 
-.lightbox-counter {
-  color: #a0c8a0;
-  font-size: 0.82rem;
-  margin-top: 0.3rem;
-}
-
-.lightbox-close {
-  position: fixed;
-  top: 1.2rem;
-  right: 1.4rem;
-  background: rgba(255,255,255,0.12);
-  border: 2px solid rgba(255,255,255,0.3);
-  color: #fff;
-  font-size: 2rem;
-  line-height: 1;
-  width: 2.6rem;
-  height: 2.6rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-  z-index: 2;
-}
-
-.lightbox-close:hover {
-  background: rgba(255,255,255,0.25);
-  transform: scale(1.1);
-}
-
-.lightbox-nav {
-  background: rgba(255,255,255,0.12);
-  border: 2px solid rgba(255,255,255,0.25);
-  color: #fff;
-  font-size: 2.8rem;
-  line-height: 1;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.2s, transform 0.2s;
-  user-select: none;
-}
-
-.lightbox-nav:hover {
-  background: rgba(255,255,255,0.25);
-  transform: scale(1.1);
-}
-
-/* ===== Footer ===== */
+/* =============================================
+   Footer
+   ============================================= */
 .site-footer {
-  background: #1a3a1a;
-  color: #8ab88a;
+  background: var(--green-dark);
+  color: rgba(255,255,255,.6);
   text-align: center;
   padding: 1.5rem 0;
-  font-size: 0.9rem;
+  font-size: .9rem;
 }
 
-/* ===== Responsive ===== */
+/* =============================================
+   Responsive
+   ============================================= */
 @media (max-width: 600px) {
-  .site-title { font-size: 1.8rem; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .lightbox-img { max-width: 92vw; }
-  .lightbox-nav { width: 2.2rem; height: 2.2rem; font-size: 2rem; }
+  .counters-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .fact-card {
+    padding: 1.4rem 1.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .counters-grid {
+    grid-template-columns: 1fr;
+  }
 }
