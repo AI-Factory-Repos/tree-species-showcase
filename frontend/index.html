@@ -8,57 +8,128 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header class="site-header">
     <div class="container">
-      <h1 class="site-title">🌳 Tree Species Showcase</h1>
-      <p class="site-subtitle">Explore the beauty and diversity of trees from around the world</p>
-      <nav class="site-nav">
-        <a href="#species">Species</a>
+      <h1>🌳 Tree Species Showcase</h1>
+      <p class="tagline">Explore the world's most remarkable trees</p>
+      <nav>
         <a href="#gallery">Gallery</a>
+        <a href="#facts">Tree Facts</a>
       </nav>
     </div>
   </header>
 
-  <!-- Species Cards Section -->
-  <section id="species" class="section">
-    <div class="container">
-      <h2 class="section-title">Featured Species</h2>
-      <div class="species-grid" id="speciesGrid">
-        <!-- Populated by script.js -->
+  <main>
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+      <div class="container">
+        <h2>Species Gallery</h2>
+        <div class="gallery-grid" id="gallery-grid">
+          <p class="loading-msg">Loading species…</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Photo Gallery Section -->
-  <section id="gallery" class="section gallery-section">
-    <div class="container">
-      <h2 class="section-title">Photo Gallery</h2>
-      <p class="section-desc">Click any photo to explore full-size tree photography.</p>
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Populated by script.js -->
-      </div>
-    </div>
-  </section>
+    <!-- Tree Facts Section -->
+    <section id="facts" class="facts-section">
+      <div class="container">
+        <h2 class="section-title">Fascinating Tree Facts</h2>
+        <p class="section-subtitle">Numbers and stories that will leave you breathless</p>
 
-  <!-- Lightbox Modal -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox" hidden>
-    <div class="lightbox-overlay" id="lightboxOverlay"></div>
-    <div class="lightbox-content">
-      <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">&times;</button>
-      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#8249;</button>
-      <div class="lightbox-img-wrap">
-        <img class="lightbox-img" id="lightboxImg" src="" alt="" />
-        <div class="lightbox-caption" id="lightboxCaption"></div>
-        <div class="lightbox-counter" id="lightboxCounter"></div>
+        <!-- Animated Counters -->
+        <div class="counters-grid">
+          <div class="counter-card">
+            <span class="counter-value" data-target="5000" data-suffix="+">0</span>
+            <span class="counter-label">Years — Oldest Living Tree (Methuselah, Great Basin Bristlecone Pine)</span>
+          </div>
+          <div class="counter-card">
+            <span class="counter-value" data-target="115" data-suffix=" m">0</span>
+            <span class="counter-label">Tallest Tree Height (Hyperion Redwood, California)</span>
+          </div>
+          <div class="counter-card">
+            <span class="counter-value" data-target="3" data-suffix=" trillion">0</span>
+            <span class="counter-label">Trees on Earth</span>
+          </div>
+          <div class="counter-card">
+            <span class="counter-value" data-target="48" data-suffix=" kg">0</span>
+            <span class="counter-label">CO₂ Absorbed per Mature Tree per Year</span>
+          </div>
+          <div class="counter-card">
+            <span class="counter-value" data-target="80000" data-suffix="+">0</span>
+            <span class="counter-label">Known Tree Species Worldwide</span>
+          </div>
+          <div class="counter-card">
+            <span class="counter-value" data-target="1500" data-suffix=" m²">0</span>
+            <span class="counter-label">Leaf Area on a Single Large Oak</span>
+          </div>
+        </div>
+
+        <!-- Rotating Fact Cards -->
+        <div class="fact-carousel-wrapper">
+          <h3 class="carousel-heading">Did You Know?</h3>
+          <div class="fact-carousel" id="fact-carousel">
+            <div class="fact-card active" data-category="benefits">
+              <span class="fact-icon">🌬️</span>
+              <h4>Natural Air Conditioners</h4>
+              <p>A single large tree can transpire up to 400 litres of water a day, cooling the surrounding air — the equivalent of five average room air-conditioners running for 20 hours.</p>
+            </div>
+            <div class="fact-card" data-category="records">
+              <span class="fact-icon">👴</span>
+              <h4>Ancient Survivors</h4>
+              <p>Methuselah, a Great Basin Bristlecone Pine in California, is approximately 5,000 years old — making it the world's oldest known non-clonal living tree. Its exact location is kept secret to protect it.</p>
+            </div>
+            <div class="fact-card" data-category="unique">
+              <span class="fact-icon">🔗</span>
+              <h4>The Underground Wood Wide Web</h4>
+              <p>Trees communicate and share nutrients through vast fungal networks called mycorrhizae. Mother trees can recognise their own kin and preferentially send carbon and nutrients to their seedlings.</p>
+            </div>
+            <div class="fact-card" data-category="benefits">
+              <span class="fact-icon">💧</span>
+              <h4>Watershed Guardians</h4>
+              <p>A mature forest can absorb up to 18 inches of rainfall before water reaches streams, dramatically reducing flood risk and replenishing underground aquifers.</p>
+            </div>
+            <div class="fact-card" data-category="records">
+              <span class="fact-icon">🏔️</span>
+              <h4>Sky-Scraping Giants</h4>
+              <p>Hyperion, a Coast Redwood in northern California, stands 115.92 m (380.3 ft) tall — taller than the Statue of Liberty including its pedestal. It was discovered in 2006 deep in a national park.</p>
+            </div>
+            <div class="fact-card" data-category="unique">
+              <span class="fact-icon">🌡️</span>
+              <h4>Temperature Controllers</h4>
+              <p>Streets lined with trees can be up to 10 °C cooler than treeless streets in summer, reducing the urban heat island effect and cutting air-conditioning energy use by 30 %.</p>
+            </div>
+            <div class="fact-card" data-category="benefits">
+              <span class="fact-icon">🫁</span>
+              <h4>Oxygen Factories</h4>
+              <p>One large tree produces enough oxygen for two people to breathe for an entire year, while simultaneously locking away carbon that would otherwise contribute to climate change.</p>
+            </div>
+            <div class="fact-card" data-category="unique">
+              <span class="fact-icon">🪓</span>
+              <h4>Resilient Regrowth</h4>
+              <p>The Pando Aspen grove in Utah is considered one organism — a clonal colony of around 47,000 genetically identical trees sharing a single root system weighing an estimated 6 million kg.</p>
+            </div>
+          </div>
+
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="prev-btn" aria-label="Previous fact">&#8592;</button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+            <button class="carousel-btn" id="next-btn" aria-label="Next fact">&#8594;</button>
+          </div>
+
+          <div class="category-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="benefits">Benefits</button>
+            <button class="filter-btn" data-filter="records">Record Holders</button>
+            <button class="filter-btn" data-filter="unique">Unique Traits</button>
+          </div>
+        </div>
       </div>
-      <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">&#8250;</button>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2024 Tree Species Showcase. All rights reserved.</p>
+      <p>&copy; 2024 Tree Species Showcase</p>
     </div>
   </footer>
 
