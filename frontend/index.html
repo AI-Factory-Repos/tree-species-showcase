@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A showcase of tree species from around the world, featuring detailed information, images, and ecological data." />
+    <meta name="keywords" content="tree species, trees, nature, botany, ecology, forest" />
+    <meta name="author" content="Tree Species Showcase" />
+    <meta property="og:title" content="Tree Species Showcase" />
+    <meta property="og:description" content="Explore a curated collection of tree species from around the world." />
+    <meta property="og:type" content="website" />
+    <title>Tree Species Showcase</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="header-brand">
+          <span class="header-logo" aria-hidden="true">🌳</span>
+          <h1 class="header-title">Tree Species Showcase</h1>
+        </div>
+        <nav class="site-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="#species" class="nav-link">Species</a></li>
+            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <!-- Hero Section -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="container">
+          <h2 id="hero-heading" class="hero-title">Discover the World's Trees</h2>
+          <p class="hero-subtitle">Explore a curated collection of tree species, their habitats, ecological roles, and fascinating characteristics.</p>
+          <a href="#species" class="btn btn-primary">Browse Species</a>
+        </div>
+      </section>
+
+      <!-- Species Listing Section -->
+      <section class="species-section" id="species" aria-labelledby="species-heading">
+        <div class="container">
+          <h2 id="species-heading" class="section-title">Tree Species</h2>
+          <div class="species-controls">
+            <input
+              type="search"
+              id="species-search"
+              class="search-input"
+              placeholder="Search species..."
+              aria-label="Search tree species"
+            />
+          </div>
+          <div class="species-grid" id="species-grid" aria-live="polite" aria-label="Species results">
+            <!-- Species cards injected by script.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="about-section" id="about" aria-labelledby="about-heading">
+        <div class="container">
+          <h2 id="about-heading" class="section-title">About This Project</h2>
+          <p class="about-text">The Tree Species Showcase is dedicated to sharing knowledge about the remarkable diversity of trees found across the globe. From towering redwoods to resilient mangroves, each species has a unique story to tell.</p>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+        <div class="container">
+          <h2 id="contact-heading" class="section-title">Contact</h2>
+          <p class="contact-text">Have a suggestion or want to contribute? Reach out to us.</p>
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Name</label>
+              <input type="text" id="contact-name" name="name" class="form-input" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email</label>
+              <input type="email" id="contact-email" name="email" class="form-input" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Message</label>
+              <textarea id="contact-message" name="message" class="form-input form-textarea" placeholder="Your message..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p class="footer-copy">&copy; <span id="footer-year"></span> Tree Species Showcase. All rights reserved.</p>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <ul class="footer-nav-list">
+            <li><a href="#species" class="footer-link">Species</a></li>
+            <li><a href="#about" class="footer-link">About</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
