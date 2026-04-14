@@ -8,57 +8,27 @@
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="site-nav" id="site-nav">
-    <div class="nav-inner">
-      <a class="nav-logo" href="#hero">🌳 TreeShowcase</a>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#featured">Featured</a></li>
-        <li><a href="#species">Species</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="header-icon">🌳</span>
+      <h1>Tree Species Showcase</h1>
+      <p class="header-subtitle">Explore the diversity of trees from around the world</p>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="hero-title">Discover the World's Trees</h1>
-      <p class="hero-tagline">
-        Explore thousands of tree species — their stories, habitats, and the vital role they play in our planet's future.
-      </p>
-      <a href="#species" class="hero-cta">Explore Species</a>
-    </div>
-    <a href="#featured" class="hero-scroll-hint" aria-label="Scroll down">
-      <span class="scroll-arrow">&#8595;</span>
-    </a>
-  </section>
+  <main>
+    <section class="species-section" aria-labelledby="species-heading">
+      <h2 id="species-heading" class="section-title">Featured Tree Species</h2>
+      <p class="section-description">Browse and learn about different tree types — from majestic giants to delicate flowering trees.</p>
+      <div class="species-grid" id="speciesGrid">
+        <!-- Cards injected by script.js -->
+      </div>
+    </section>
+  </main>
 
-  <!-- Featured Section (anchor target) -->
-  <section class="section featured-section" id="featured">
-    <div class="section-inner">
-      <h2>Featured Tree</h2>
-      <p>Highlighted tree species content will appear here.</p>
-    </div>
-  </section>
-
-  <!-- Species Section (anchor target) -->
-  <section class="section species-section" id="species">
-    <div class="section-inner">
-      <h2>Browse Species</h2>
-      <p>Full species listing will appear here.</p>
-    </div>
-  </section>
-
-  <!-- About Section (anchor target) -->
-  <section class="section about-section" id="about">
-    <div class="section-inner">
-      <h2>About</h2>
-      <p>Learn more about the Tree Species Showcase project.</p>
-    </div>
-  </section>
+  <footer class="site-footer">
+    <p>&copy; 2024 Tree Species Showcase</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
