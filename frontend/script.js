@@ -1,174 +1,254 @@
-const treeSpecies = [
+/* ============================================================
+   Tree Species Showcase — script.js
+   Populates species cards + interactive lightbox gallery
+   ============================================================ */
+
+// --------------- Data ---------------
+
+const SPECIES = [
   {
-    id: 1,
-    name: 'Oak',
-    scientific: 'Quercus robur',
-    emoji: '🌳',
-    color: '#5a7a3a',
-    accentColor: '#8db360',
-    characteristics: [
-      { icon: '📏', label: 'Height', value: '20–40 m' },
-      { icon: '📅', label: 'Lifespan', value: 'Up to 1,000 yrs' },
-      { icon: '🌍', label: 'Native', value: 'Europe & W. Asia' },
-      { icon: '🍂', label: 'Leaf Type', value: 'Deciduous' },
-    ],
-    description: 'Renowned for its strength and longevity, the oak is a keystone species supporting hundreds of wildlife species.'
+    name: 'Coast Redwood',
+    latin: 'Sequoia sempervirens',
+    img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80',
+    desc: 'The tallest living trees on Earth, native to the coastal fog belt of California and Oregon.'
   },
   {
-    id: 2,
-    name: 'Maple',
-    scientific: 'Acer saccharum',
-    emoji: '🍁',
-    color: '#b5451b',
-    accentColor: '#e8793a',
-    characteristics: [
-      { icon: '📏', label: 'Height', value: '18–35 m' },
-      { icon: '📅', label: 'Lifespan', value: '200–300 yrs' },
-      { icon: '🌍', label: 'Native', value: 'North America' },
-      { icon: '🍂', label: 'Leaf Type', value: 'Deciduous' },
-    ],
-    description: 'Famous for its brilliant autumn foliage and as the primary source of maple syrup.'
+    name: 'Japanese Maple',
+    latin: 'Acer palmatum',
+    img: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&q=80',
+    desc: 'Prized for its delicate, star-shaped leaves that blaze brilliant red and orange each autumn.'
   },
   {
-    id: 3,
-    name: 'Pine',
-    scientific: 'Pinus sylvestris',
-    emoji: '🌲',
-    color: '#2d6a4f',
-    accentColor: '#52b788',
-    characteristics: [
-      { icon: '📏', label: 'Height', value: '20–35 m' },
-      { icon: '📅', label: 'Lifespan', value: '150–300 yrs' },
-      { icon: '🌍', label: 'Native', value: 'Eurasia' },
-      { icon: '🍃', label: 'Leaf Type', value: 'Evergreen' },
-    ],
-    description: 'A hardy evergreen conifer that thrives in cold climates and poor soils across vast northern forests.'
+    name: 'Weeping Willow',
+    latin: 'Salix babylonica',
+    img: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80',
+    desc: 'Iconic for its graceful, pendulous branches that sweep toward the ground near water.'
   },
   {
-    id: 4,
+    name: 'Scots Pine',
+    latin: 'Pinus sylvestris',
+    img: 'https://images.unsplash.com/photo-1425036458755-dc303a604201?w=600&q=80',
+    desc: 'A hardy evergreen conifer with distinctive orange-red bark and blue-green needles.'
+  },
+  {
+    name: 'Silver Birch',
+    latin: 'Betula pendula',
+    img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80',
+    desc: 'Recognised by its striking white papery bark and delicate, fluttering leaves.'
+  },
+  {
     name: 'Cherry Blossom',
-    scientific: 'Prunus serrulata',
-    emoji: '🌸',
-    color: '#c9648a',
-    accentColor: '#f4a8c7',
-    characteristics: [
-      { icon: '📏', label: 'Height', value: '5–12 m' },
-      { icon: '📅', label: 'Lifespan', value: '15–20 yrs' },
-      { icon: '🌍', label: 'Native', value: 'Japan & China' },
-      { icon: '🍂', label: 'Leaf Type', value: 'Deciduous' },
-    ],
-    description: 'Celebrated worldwide for its ephemeral pink blossoms — a cultural symbol of renewal and beauty.'
-  },
-  {
-    id: 5,
-    name: 'Redwood',
-    scientific: 'Sequoia sempervirens',
-    emoji: '🌲',
-    color: '#6b3a2a',
-    accentColor: '#a0522d',
-    characteristics: [
-      { icon: '📏', label: 'Height', value: 'Up to 115 m' },
-      { icon: '📅', label: 'Lifespan', value: 'Over 2,000 yrs' },
-      { icon: '🌍', label: 'Native', value: 'California, USA' },
-      { icon: '🍃', label: 'Leaf Type', value: 'Evergreen' },
-    ],
-    description: 'The tallest living trees on Earth, coast redwoods create ancient forests of extraordinary scale.'
-  },
-  {
-    id: 6,
-    name: 'Birch',
-    scientific: 'Betula pendula',
-    emoji: '🌿',
-    color: '#4a7c6f',
-    accentColor: '#7fbfb4',
-    characteristics: [
-      { icon: '📏', label: 'Height', value: '15–25 m' },
-      { icon: '📅', label: 'Lifespan', value: '60–90 yrs' },
-      { icon: '🌍', label: 'Native', value: 'Europe & Asia' },
-      { icon: '🍂', label: 'Leaf Type', value: 'Deciduous' },
-    ],
-    description: 'Recognised by its striking white bark and delicate leaves, birch is a pioneer species in recovering landscapes.'
-  },
-  {
-    id: 7,
-    name: 'Baobab',
-    scientific: 'Adansonia digitata',
-    emoji: '🌴',
-    color: '#8b6914',
-    accentColor: '#c8a84b',
-    characteristics: [
-      { icon: '📏', label: 'Height', value: '5–30 m' },
-      { icon: '📅', label: 'Lifespan', value: 'Up to 3,000 yrs' },
-      { icon: '🌍', label: 'Native', value: 'Sub-Saharan Africa' },
-      { icon: '🍂', label: 'Leaf Type', value: 'Deciduous' },
-    ],
-    description: 'The iconic "tree of life" of Africa — stores vast amounts of water and provides food and shelter.'
-  },
-  {
-    id: 8,
-    name: 'Willow',
-    scientific: 'Salix babylonica',
-    emoji: '🌿',
-    color: '#607d3a',
-    accentColor: '#9bc44a',
-    characteristics: [
-      { icon: '📏', label: 'Height', value: '8–20 m' },
-      { icon: '📅', label: 'Lifespan', value: '30–50 yrs' },
-      { icon: '🌍', label: 'Native', value: 'China' },
-      { icon: '🍂', label: 'Leaf Type', value: 'Deciduous' },
-    ],
-    description: 'Known for its graceful, weeping branches, willows thrive near water and are prized in gardens worldwide.'
+    latin: 'Prunus serrulata',
+    img: 'https://images.unsplash.com/photo-1522383225653-ed111181a951?w=600&q=80',
+    desc: 'Japan\'s national flower symbol; famous for its spectacular spring bloom of pink-white flowers.'
   }
 ];
 
-function createTreeIllustration(species) {
-  const { color, accentColor, emoji } = species;
-  return `
-    <div class="card-illustration" style="--tree-color:${color};--tree-accent:${accentColor}" aria-hidden="true">
-      <div class="illustration-bg"></div>
-      <div class="tree-emoji">${emoji}</div>
-      <div class="ground"></div>
-    </div>
-  `;
-}
+const GALLERY_PHOTOS = [
+  {
+    src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80',
+    caption: 'Coast Redwoods — Ancient giants piercing through morning mist, California'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&q=80',
+    caption: 'Japanese Maple — Fiery autumn leaves glow against a soft garden backdrop'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=80',
+    caption: 'Aerial Forest Canopy — Endless tapestry of treetops from above'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1425036458755-dc303a604201?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1425036458755-dc303a604201?w=400&q=80',
+    caption: 'Scots Pine — Lone sentinel standing against a wide winter sky'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80',
+    caption: 'Mountain Forest — Dense spruce forest cloaks the high alpine slopes'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1522383225653-ed111181a951?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1522383225653-ed111181a951?w=400&q=80',
+    caption: 'Cherry Blossom — Delicate pink petals herald the arrival of spring in Kyoto'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=80',
+    caption: 'Enchanted Forest — Shafts of golden light filter through a misty woodland'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=400&q=80',
+    caption: 'Tall Timber — Towering straight trunks create a natural cathedral'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=400&q=80',
+    caption: 'Sun Through the Canopy — Radiant beams weave between ancient boughs'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&q=80',
+    caption: 'Golden Hour Woodland — Warm amber light transforms an autumn grove'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1511497584788-876760111969?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1511497584788-876760111969?w=400&q=80',
+    caption: 'Deciduous Autumn — Sweeping hillside ablaze with fall colour'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&q=80',
+    caption: 'Sunrise Forest — Dawn mist hovers above a tranquil woodland trail'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&q=80',
+    caption: 'Lakeside Trees — Mirror reflections of pines shimmer on still water'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=80',
+    caption: 'Lone Oak — A solitary oak commands a mist-veiled hillside at dawn'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=1200&q=85',
+    thumb: 'https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=400&q=80',
+    caption: 'Winter Birches — Silver trunks glow against a pale grey winter sky'
+  }
+];
 
-function createCharacteristicBadge({ icon, label, value }) {
-  return `
-    <li class="characteristic">
-      <span class="char-icon" aria-hidden="true">${icon}</span>
-      <div class="char-text">
-        <span class="char-label">${label}</span>
-        <span class="char-value">${value}</span>
-      </div>
-    </li>
-  `;
-}
+// --------------- Species Cards ---------------
 
-function createSpeciesCard(species) {
-  const { name, scientific, description, characteristics, color, accentColor } = species;
-  const charBadges = characteristics.map(createCharacteristicBadge).join('');
-  return `
-    <article class="species-card" style="--card-color:${color};--card-accent:${accentColor}" tabindex="0" aria-label="${name} — ${scientific}">
-      ${createTreeIllustration(species)}
-      <div class="card-body">
-        <header class="card-header">
-          <h3 class="card-name">${name}</h3>
-          <p class="card-scientific"><em>${scientific}</em></p>
-        </header>
-        <p class="card-description">${description}</p>
-        <ul class="card-characteristics" aria-label="Key characteristics">
-          ${charBadges}
-        </ul>
-      </div>
-      <div class="card-hover-bar" aria-hidden="true"></div>
-    </article>
-  `;
-}
-
-function renderSpeciesGrid() {
+function renderSpeciesCards() {
   const grid = document.getElementById('speciesGrid');
   if (!grid) return;
-  grid.innerHTML = treeSpecies.map(createSpeciesCard).join('');
+  grid.innerHTML = SPECIES.map(s => `
+    <article class="species-card">
+      <img class="species-card-img" src="${s.img}" alt="${s.name}" loading="lazy" />
+      <div class="species-card-body">
+        <div class="species-card-name">${s.name}</div>
+        <div class="species-card-latin">${s.latin}</div>
+        <p class="species-card-desc">${s.desc}</p>
+      </div>
+    </article>
+  `).join('');
 }
 
-document.addEventListener('DOMContentLoaded', renderSpeciesGrid);
+// --------------- Gallery Grid ---------------
+
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  if (!grid) return;
+  grid.innerHTML = GALLERY_PHOTOS.map((photo, index) => `
+    <div class="gallery-thumb" data-index="${index}" role="button" tabindex="0"
+         aria-label="Open photo: ${photo.caption}">
+      <img src="${photo.thumb}" alt="${photo.caption}" loading="lazy" />
+      <div class="gallery-thumb-overlay">
+        <span class="gallery-thumb-caption">${photo.caption}</span>
+      </div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.gallery-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => openLightbox(parseInt(thumb.dataset.index, 10)));
+    thumb.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(parseInt(thumb.dataset.index, 10));
+      }
+    });
+  });
+}
+
+// --------------- Lightbox ---------------
+
+let currentIndex = 0;
+const total = GALLERY_PHOTOS.length;
+
+const lightbox      = document.getElementById('lightbox');
+const overlay       = document.getElementById('lightboxOverlay');
+const closeBtn      = document.getElementById('lightboxClose');
+const prevBtn       = document.getElementById('lightboxPrev');
+const nextBtn       = document.getElementById('lightboxNext');
+const lightboxImg   = document.getElementById('lightboxImg');
+const captionEl     = document.getElementById('lightboxCaption');
+const counterEl     = document.getElementById('lightboxCounter');
+
+function openLightbox(index) {
+  currentIndex = index;
+  updateLightboxContent(false);
+  lightbox.hidden = false;
+  document.body.style.overflow = 'hidden';
+  closeBtn.focus();
+}
+
+function closeLightbox() {
+  lightbox.hidden = true;
+  document.body.style.overflow = '';
+}
+
+function updateLightboxContent(animate) {
+  const photo = GALLERY_PHOTOS[currentIndex];
+
+  const doUpdate = () => {
+    lightboxImg.src = photo.src;
+    lightboxImg.alt = photo.caption;
+    captionEl.textContent = photo.caption;
+    counterEl.textContent = `${currentIndex + 1} / ${total}`;
+  };
+
+  if (animate) {
+    lightboxImg.classList.add('fading');
+    setTimeout(() => {
+      doUpdate();
+      lightboxImg.classList.remove('fading');
+    }, 200);
+  } else {
+    doUpdate();
+  }
+}
+
+function showPrev() {
+  currentIndex = (currentIndex - 1 + total) % total;
+  updateLightboxContent(true);
+}
+
+function showNext() {
+  currentIndex = (currentIndex + 1) % total;
+  updateLightboxContent(true);
+}
+
+// Event listeners
+closeBtn.addEventListener('click', closeLightbox);
+overlay.addEventListener('click', closeLightbox);
+prevBtn.addEventListener('click', showPrev);
+nextBtn.addEventListener('click', showNext);
+
+document.addEventListener('keydown', e => {
+  if (lightbox.hidden) return;
+  if (e.key === 'Escape')      closeLightbox();
+  if (e.key === 'ArrowLeft')   showPrev();
+  if (e.key === 'ArrowRight')  showNext();
+});
+
+// Touch / swipe support
+let touchStartX = 0;
+lightbox.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].clientX;
+}, { passive: true });
+lightbox.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) dx < 0 ? showNext() : showPrev();
+}, { passive: true });
+
+// --------------- Init ---------------
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderSpeciesCards();
+  renderGallery();
+});
