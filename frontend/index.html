@@ -8,26 +8,58 @@
 </head>
 <body>
 
+  <!-- Header -->
   <header class="site-header">
-    <div class="header-inner">
-      <span class="header-icon">🌳</span>
-      <h1>Tree Species Showcase</h1>
-      <p class="header-subtitle">Explore the diversity of trees from around the world</p>
+    <div class="container">
+      <h1 class="site-title">🌳 Tree Species Showcase</h1>
+      <p class="site-subtitle">Explore the beauty and diversity of trees from around the world</p>
+      <nav class="site-nav">
+        <a href="#species">Species</a>
+        <a href="#gallery">Gallery</a>
+      </nav>
     </div>
   </header>
 
-  <main>
-    <section class="species-section" aria-labelledby="species-heading">
-      <h2 id="species-heading" class="section-title">Featured Tree Species</h2>
-      <p class="section-description">Browse and learn about different tree types — from majestic giants to delicate flowering trees.</p>
+  <!-- Species Cards Section -->
+  <section id="species" class="section">
+    <div class="container">
+      <h2 class="section-title">Featured Species</h2>
       <div class="species-grid" id="speciesGrid">
-        <!-- Cards injected by script.js -->
+        <!-- Populated by script.js -->
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section -->
+  <section id="gallery" class="section gallery-section">
+    <div class="container">
+      <h2 class="section-title">Photo Gallery</h2>
+      <p class="section-desc">Click any photo to explore full-size tree photography.</p>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Populated by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox" hidden>
+    <div class="lightbox-overlay" id="lightboxOverlay"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">&times;</button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#8249;</button>
+      <div class="lightbox-img-wrap">
+        <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+      </div>
+      <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">&#8250;</button>
+    </div>
+  </div>
 
   <footer class="site-footer">
-    <p>&copy; 2024 Tree Species Showcase</p>
+    <div class="container">
+      <p>&copy; 2024 Tree Species Showcase. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
