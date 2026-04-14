@@ -6,228 +6,324 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #1a1a1a;
-  background: #f5f5f0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #f4f7f0;
+  color: #2c3e1f;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* ===== Navigation ===== */
-.site-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  padding: 1rem 2rem;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.site-nav.scrolled {
-  background: rgba(20, 40, 20, 0.96);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-logo {
-  font-size: 1.25rem;
-  font-weight: 700;
+/* ===== Header ===== */
+.site-header {
+  background: linear-gradient(135deg, #2d5a1b 0%, #4a7c2f 50%, #5a8c3a 100%);
   color: #fff;
-  letter-spacing: 0.03em;
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
-.nav-links {
-  list-style: none;
+.header-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.header-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.site-header h1 {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  margin-bottom: 0.5rem;
+}
+
+.header-subtitle {
+  font-size: 1.05rem;
+  opacity: 0.88;
+  font-weight: 300;
+}
+
+/* ===== Main Layout ===== */
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+/* ===== Species Section ===== */
+.species-section {
+  /* intentionally minimal wrapper */
+}
+
+.section-title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #1e3d10;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-description {
+  text-align: center;
+  color: #556b3a;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+/* ===== Grid ===== */
+.species-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.75rem;
+}
+
+/* ===== Species Card ===== */
+.species-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
   display: flex;
-  gap: 2rem;
-}
-
-.nav-links a {
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover {
-  color: #7ecb7e;
-}
-
-/* ===== Hero Section ===== */
-.hero {
+  flex-direction: column;
   position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 560px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  cursor: default;
+  outline: none;
+}
+
+.species-card:hover,
+.species-card:focus-visible {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14), 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.species-card:focus-visible {
+  outline: 3px solid var(--card-accent, #5a8c3a);
+  outline-offset: 2px;
+}
+
+/* Animated bottom colour bar */
+.card-hover-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--card-color, #3a7d2c), var(--card-accent, #5a8c3a));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  border-radius: 0 0 16px 16px;
+}
+
+.species-card:hover .card-hover-bar,
+.species-card:focus-visible .card-hover-bar {
+  transform: scaleX(1);
+}
+
+/* ===== Card Illustration ===== */
+.card-illustration {
+  position: relative;
+  height: 140px;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--tree-color) 18%, #e8f4e0) 0%,
+    color-mix(in srgb, var(--tree-accent) 22%, #f0f8e8) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-
-  /*
-   * Featured tree background — uses an Unsplash photo of a majestic oak.
-   * Falls back to a dark green gradient if the image cannot load.
-   */
-  background-image: url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1920&q=80');
-  background-size: cover;
-  background-position: center 30%;
-  background-color: #1a3a1a;
+  flex-shrink: 0;
 }
 
-.hero-overlay {
+/* Fallback gradient for browsers without color-mix */
+@supports not (background: color-mix(in srgb, red 10%, blue)) {
+  .card-illustration {
+    background: linear-gradient(160deg, #d8edcc 0%, #eaf4dc 100%);
+  }
+}
+
+.illustration-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    160deg,
-    rgba(10, 30, 10, 0.72) 0%,
-    rgba(10, 30, 10, 0.45) 60%,
-    rgba(10, 30, 10, 0.65) 100%
-  );
+  background: radial-gradient(ellipse at 50% 80%, rgba(255,255,255,0.55) 0%, transparent 70%);
 }
 
-.hero-content {
+.tree-emoji {
+  font-size: 4.5rem;
   position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 0 1.5rem;
-  max-width: 780px;
-  animation: heroFadeUp 0.9s ease both;
+  z-index: 1;
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+  transition: transform 0.28s ease;
 }
 
-@keyframes heroFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.species-card:hover .tree-emoji,
+.species-card:focus-visible .tree-emoji {
+  transform: scale(1.12) translateY(-4px);
 }
 
-.hero-title {
-  font-size: clamp(2.4rem, 6vw, 4.2rem);
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.55);
-  margin-bottom: 1.1rem;
-}
-
-.hero-tagline {
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 600px;
-  margin: 0 auto 2.2rem;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-}
-
-.hero-cta {
-  display: inline-block;
-  padding: 0.85rem 2.4rem;
-  background: #4caf50;
-  color: #fff;
-  font-size: 1.05rem;
-  font-weight: 700;
-  border-radius: 50px;
-  letter-spacing: 0.04em;
-  box-shadow: 0 4px 20px rgba(76, 175, 80, 0.45);
-  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-}
-
-.hero-cta:hover,
-.hero-cta:focus-visible {
-  background: #388e3c;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 26px rgba(56, 142, 60, 0.55);
-  outline: none;
-}
-
-.hero-cta:active {
-  transform: translateY(0);
-}
-
-/* Scroll hint arrow */
-.hero-scroll-hint {
+.ground {
   position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.6rem;
-  animation: bounce 1.8s infinite;
-  transition: color 0.2s;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--tree-color) 25%, #c8e0b8) 100%);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 }
 
-.hero-scroll-hint:hover {
-  color: #7ecb7e;
+@supports not (background: color-mix(in srgb, red 10%, blue)) {
+  .ground {
+    background: linear-gradient(180deg, transparent 0%, #b8d4a0 100%);
+  }
 }
 
-.scroll-arrow {
-  display: block;
+/* ===== Card Body ===== */
+.card-body {
+  padding: 1.2rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.75rem;
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(8px); }
+.card-header {
+  border-bottom: 1px solid #eef2ea;
+  padding-bottom: 0.6rem;
 }
 
-/* ===== Generic Sections ===== */
-.section {
-  padding: 5rem 1.5rem;
-}
-
-.section-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.section h2 {
-  font-size: 2rem;
+.card-name {
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  color: #1a3a1a;
+  color: #1e3d10;
+  margin-bottom: 0.15rem;
+  line-height: 1.2;
 }
 
-.featured-section {
-  background: #eef6ee;
+.card-scientific {
+  font-size: 0.82rem;
+  color: #6b8c52;
+  font-style: italic;
 }
 
-.species-section {
-  background: #f5f5f0;
+.card-description {
+  font-size: 0.88rem;
+  color: #4a5e38;
+  line-height: 1.55;
+  flex: 1;
 }
 
-.about-section {
-  background: #eef6ee;
+/* ===== Characteristics List ===== */
+.card-characteristics {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.characteristic {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #f6faf2;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #e4edd8;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.species-card:hover .characteristic {
+  background: color-mix(in srgb, var(--card-accent) 8%, #f6faf2);
+  border-color: color-mix(in srgb, var(--card-accent) 30%, #e4edd8);
+}
+
+@supports not (background: color-mix(in srgb, red 10%, blue)) {
+  .species-card:hover .characteristic {
+    background: #eff7e8;
+    border-color: #c8dfb0;
+  }
+}
+
+.char-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.char-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.char-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #7a9e5a;
+  line-height: 1.1;
+}
+
+.char-value {
+  font-size: 0.78rem;
+  color: #2c3e1f;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  background: #1e3d10;
+  color: #a8c890;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  font-size: 0.85rem;
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 640px) {
-  .nav-links {
-    gap: 1.1rem;
+@media (max-width: 480px) {
+  .species-grid {
+    grid-template-columns: 1fr;
   }
 
-  .nav-links a {
-    font-size: 0.85rem;
+  .card-characteristics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-illustration {
+    height: 120px;
+  }
+
+  .tree-emoji {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .species-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .species-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
